@@ -13,19 +13,34 @@
 
   (async function changePRslink() {
     while (true) {
-      let link = await waitForElm("a[href$='/workspace/pull-requests']");
+      const link = await waitForElm("nav a[href$='/workspace/pull-requests']");
       link.href = link.href + "?user_filter=WATCHING";
 
-      link.addEventListener(
-        "click",
-        function (event) {
-          event.stopImmediatePropagation();
-        },
-        true
-      );
+      makeAnchorElemWork(link);
+    }
+  })();
+
+  (async function addJiraYourWork() {
+    while (true) {
+      const logo = await waitForElm("nav a[href='/']");
+
+      const org = window.location.href.split("/")[3];
+      logo.href = `https://${org}.atlassian.net/jira/your-work`;
+      logo.textContent = "Back to Jira";
+      makeAnchorElemWork(logo);
     }
   })();
 })();
+
+function makeAnchorElemWork(elem) {
+  elem.addEventListener(
+    "click",
+    function (event) {
+      event.stopImmediatePropagation();
+    },
+    true
+  );
+}
 
 //https://stackoverflow.com/a/61511955
 function waitForElm(selector) {
