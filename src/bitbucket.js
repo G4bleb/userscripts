@@ -16,9 +16,13 @@
       let link = await waitForElm("a[href$='/workspace/pull-requests']");
       link.href = link.href + "?user_filter=WATCHING";
 
-      link.onclick = function () {
-        window.location.href = link.href;
-      };
+      link.addEventListener(
+        "click",
+        function (event) {
+          event.stopImmediatePropagation();
+        },
+        true
+      );
     }
   })();
 })();
