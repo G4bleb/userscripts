@@ -13,8 +13,10 @@
 
   (async function changePRslink() {
     let link = await waitForElm("a[href$='/workspace/pull-requests']");
-    debugger;
     link.href = link.href + "?user_filter=WATCHING";
+    link.onclick = function () {
+      window.location.href = link.href;
+    };
   })();
 })();
 
