@@ -1,32 +1,28 @@
 // ==UserScript==
-// @name         bitbucket
+// @name         jira
 // @version      0.1
-// @description  bitbucket improvements
+// @description  jira improvements
 // @author       https://github.com/G4bleb
-// @match        https://bitbucket.org/*
-// @icon         https://bitbucket.org/favicon.ico
+// @match        https://*.atlassian.net/jira/*
+// @icon         https://www.atlassian.com/favicon-32x32.png
 // @grant        none
 // ==/UserScript==
 
 (function () {
   "use strict";
 
-  (async function changePRslink() {
-    while (true) {
-      const link = await waitForElm("nav a[href$='/workspace/pull-requests']");
-      link.href = link.href + "?user_filter=WATCHING";
-
-      makeAnchorElemWork(link);
-    }
-  })();
-
   (async function addJiraYourWork() {
     while (true) {
-      const logo = await waitForElm("nav a[href='/']");
+      const logo = await waitForElm("nav a[href='/jira']");
 
-      const org = window.location.href.split("/")[3];
-      logo.href = `https://${org}.atlassian.net/jira/your-work`;
-      logo.textContent = "Go to Jira";
+      const url = window.location.href;
+      const org = url.substring(
+        url.indexOf("//") + 2,
+        url.indexOf(".atlassian.net")
+      );
+      console.log(window.location.href.split("."));
+      logo.href = `https://bitbucket.org/${org}/workspace/pull-requests?user_filter=WATCHING`;
+      logo.textContent = "Go to Bitbucket";
       makeAnchorElemWork(logo);
     }
   })();
