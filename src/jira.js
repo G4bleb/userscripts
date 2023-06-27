@@ -3,7 +3,7 @@
 // @version      0.1
 // @description  jira improvements
 // @author       https://github.com/G4bleb
-// @match        https://*.atlassian.net/jira/*
+// @match        https://*.atlassian.net/*
 // @icon         https://www.atlassian.com/favicon-32x32.png
 // @grant        none
 // ==/UserScript==
