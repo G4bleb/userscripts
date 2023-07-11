@@ -20,7 +20,6 @@
         url.indexOf("//") + 2,
         url.indexOf(".atlassian.net")
       );
-      console.log(window.location.href.split("."));
       logo.href = `https://bitbucket.org/${org}/workspace/pull-requests?user_filter=WATCHING`;
       logo.textContent = "Go to Bitbucket";
       makeAnchorElemWork(logo);
