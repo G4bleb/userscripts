@@ -25,6 +25,15 @@
       makeAnchorElemWork(logo);
     }
   })();
+
+  (async function removeReleasesFromSidebar() {
+    while (true) {
+      const releasesDiv = await waitForElm(
+        "div[data-test-id='development-summary-releases-field.ui.summary.actions']"
+      );
+      releasesDiv.remove();
+    }
+  })();
 })();
 
 function makeAnchorElemWork(elem) {
