@@ -13,7 +13,7 @@
 
   (async function changePRslink() {
     while (true) {
-      const link = await waitForElm("nav a[href$='/workspace/pull-requests']");
+      const link = await waitForElm("nav a[href$='/workspace/pull-requests/']");
       link.href = link.href + "?user_filter=WATCHING";
 
       makeAnchorElemWork(link);
